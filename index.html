@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CWI x402 Agent Deck API — Founding Integrator Program</title>
+<meta name="description" content="Live x402 paid API on Base mainnet. Your agent can pay for API calls. Founding integrators wanted.">
+<style>
+  :root{--bg:#0a0e1a;--card:#121a2e;--line:#22304f;--txt:#e8eef8;--mut:#a9b7d0;--acc:#7fd0ff;--grn:#57d98d;--amb:#ffb454}
+  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  header.hero{padding:88px 0 56px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#16244a 0%,var(--bg) 65%)}
+  header.hero h1{font-size:clamp(2rem,5vw,3.4rem);margin:.2em 0;line-height:1.15}
+  header.hero h1 .acc{color:var(--acc)}
+  .sub{color:var(--mut);font-size:1.15rem;max-width:640px;margin:0 auto}
+  .badge{display:inline-block;border:1px solid var(--grn);color:var(--grn);border-radius:999px;padding:6px 18px;font-size:.85rem;letter-spacing:.06em;margin-bottom:18px}
+  .cta{display:inline-block;background:#1e9cf0;color:#fff;text-decoration:none;padding:14px 34px;border-radius:10px;font-weight:700;margin-top:26px}
+  .cta.ghost{background:transparent;border:1px solid var(--line);color:var(--acc)}
+  section{padding:52px 0;border-top:1px solid var(--line)}
+  h2{font-size:1.7rem;margin-top:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card code{color:var(--acc)}
+  table{width:100%;border-collapse:collapse;margin-top:18px;font-size:.95rem}
+  th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:600}
+  td code{color:var(--acc);word-break:break-all}
+  .pill{display:inline-block;font-size:.75rem;border-radius:6px;padding:2px 10px;margin-left:8px}
+  .live{background:#123d28;color:var(--grn)} .draft{background:#3d3412;color:var(--amb)}
+  .honest{background:#231016;border:1px solid #5a2730;border-radius:12px;padding:24px;margin-top:24px}
+  .honest h3{margin-top:0;color:#ff9d9d}
+  pre{background:#0d1322;border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;color:#cfe3ff;font-size:.85rem}
+  .faq dt{font-weight:700;margin-top:18px} .faq dd{margin:6px 0 0;color:var(--mut)}
+  footer{padding:40px 0 60px;color:var(--mut);font-size:.85rem;text-align:center;border-top:1px solid var(--line)}
+  form.req{margin-top:18px;display:grid;gap:12px;max-width:520px}
+  form.req input,form.req textarea{background:#0d1322;border:1px solid var(--line);border-radius:8px;color:var(--txt);padding:12px;font-size:1rem}
+  form.req button{background:#1e9cf0;color:#fff;border:0;border-radius:10px;padding:14px;font-weight:700;font-size:1rem;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="badge">● 402 CHALLENGES LIVE — BASE MAINNET</div>
+    <h1>Your agent can pay for API calls.<br><span class="acc">x402 on Base. Live now.</span></h1>
+    <p class="sub">The CWI Agent Deck sells real music-industry data per call — no API keys, no accounts. Your wallet signs the challenge, the data comes back. The founding-integrator program is open.</p>
+    <a class="cta" href="mailto:hp@cumulativeweb.com?subject=Founding%20Integrator%20%E2%80%94%20x402&body=Hi%20CWI%20team%2C%0A%0AI%27d%20like%20founding%20pricing%20for%20the%20x402%20Agent%20Deck.%0A%0AWhat%20I%27m%20building%3A%20%0ARoutes%20I%20need%3A%20%0A">Request founding pricing</a>
+    <a class="cta ghost" href="#routes">See the live routes</a>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="how">
+  <h2>How x402 works</h2>
+  <div class="grid">
+    <div class="card"><strong>1 · Call unpaid</strong><br>Your agent hits a paid route with no payment attached.</div>
+    <div class="card"><strong>2 · Get a 402</strong><br>The server answers <code>402 Payment Required</code> with a signed challenge: scheme, price, USDC asset, payTo address.</div>
+    <div class="card"><strong>3 · Sign &amp; resubmit</strong><br>The wallet signs (EIP-3009) and the request goes back with an <code>X-PAYMENT</code> header.</div>
+    <div class="card"><strong>4 · Settle &amp; receive</strong><br>A facilitator verifies and settles on Base; the server returns the data plus a receipt.</div>
+  </div>
+  <h3 style="margin-top:28px">Try the wall yourself — no wallet needed</h3>
+  <pre>curl "https://cwi-x402-api-production.up.railway.app/api/v1/playlist-check?track=zooted-zone"
+# → HTTP 402, with a real signed x402 v2 challenge in the payment-required header
+
+curl "https://cwi-x402-api-production.up.railway.app/health"     # free
+curl "https://cwi-x402-api-production.up.railway.app/pricing"    # free, machine-readable route table</pre>
+</section>
+
+<section id="routes">
+  <h2>Live routes</h2>
+  <p style="color:var(--mut)">Route names are real and live today. Draft routes go live in the order founding integrators need them. Prices are not published — request founding pricing.</p>
+  <table>
+    <tr><th>Route</th><th>Status</th><th>What it returns</th></tr>
+    <tr><td><code>GET /api/v1/playlist-check?track=</code></td><td><span class="pill live">LIVE</span></td><td>Verified playlist placements: playlist, position, date, submission evidence</td></tr>
+    <tr><td><code>GET /api/v1/momentum-score?track=</code></td><td><span class="pill live">LIVE</span></td><td>Momentum snapshot: plays, listeners, placements, outreach outcomes</td></tr>
+    <tr><td><code>GET /api/v1/tally-wins</code></td><td><span class="pill draft">DRAFT</span></td><td>Citeable wins feed with proof URLs (THE TALLY)</td></tr>
+    <tr><td><code>GET /api/v1/ledger-attest?seq=</code></td><td><span class="pill draft">DRAFT</span></td><td>Hash-chained proof-of-use attestation (Gear Ledger)</td></tr>
+    <tr><td><code>GET /api/v1/rights-summary</code></td><td><span class="pill draft">DRAFT</span></td><td>Machine-readable rights snapshot with confidence labels</td></tr>
+    <tr><td><code>GET /api/v1/clearance-check</code></td><td><span class="pill draft">DRAFT</span></td><td>Clear / conditional / not-cleared answer for a named use</td></tr>
+    <tr><td><code>GET /api/v1/press-facts</code></td><td><span class="pill draft">DRAFT</span></td><td>Verified fact-set with sources for press use</td></tr>
+    <tr><td><code>GET /api/v1/prospect-score</code></td><td><span class="pill draft">DRAFT</span></td><td>Five-gate rubric score (Prospect Scanner)</td></tr>
+    <tr><td><code>POST /api/v1/copy-lint</code></td><td><span class="pill draft">DRAFT</span></td><td>Verification lint pass on draft copy against the fact graph</td></tr>
+    <tr><td><code>GET /api/v1/spin-attest</code></td><td><span class="pill draft">DRAFT</span></td><td>Attested spin-log entry, or explicit null attestation (OPEN WAVE)</td></tr>
+  </table>
+  <div class="honest">
+    <h3>Honest status — read before you integrate</h3>
+    <ul>
+      <li>402 challenges are <strong>live on Base mainnet today</strong> — verify with an unpaid call. Proven.</li>
+      <li><strong>Genuine x402 settlement is still being proven.</strong> A $1.00 USDC payment received 2026-09-22 was a <em>manual</em> Coinbase send — not a protocol-mediated x402 settlement.</li>
+      <li><strong>No live integrators, no settlement volume, no testimonials yet.</strong> That's exactly why the founding program exists: get in while the rail is being proven.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="founding">
+  <h2>Founding-integrator program</h2>
+  <div class="grid">
+    <div class="card"><strong>Locked early-adopter pricing</strong><br>Written offers, priced per route, before any public pricing exists.</div>
+    <div class="card"><strong>You steer the roadmap</strong><br>Draft routes go live in the order you need them.</div>
+    <div class="card"><strong>Direct line to the builders</strong><br>Talk to the team that shipped it — no support queue.</div>
+    <div class="card"><strong>Public credit</strong><br>Named case studies, only with your explicit permission.</div>
+  </div>
+  <form class="req" action="mailto:hp@cumulativeweb.com?subject=Founding%20Integrator%20%E2%80%94%20x402" method="post" enctype="text/plain">
+    <input name="name" placeholder="Your name / handle" required>
+    <input name="contact" placeholder="Email or where we reach you" required>
+    <textarea name="build" rows="4" placeholder="What are you building? Which routes do you need?" required></textarea>
+    <button type="submit">Request founding pricing →</button>
+  </form>
+  <p style="color:var(--mut);font-size:.9rem">Every request is logged and answered. No spam, ever.</p>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <dl class="faq">
+    <dt>What is x402?</dt>
+    <dd>An open payment protocol (x402-foundation) that makes HTTP 402 "Payment Required" a real paywall: agents pay per API call in USDC on-chain, with no accounts or API keys.</dd>
+    <dt>Has settlement been proven?</dt>
+    <dd>Honest answer: not yet on mainnet. The 402 challenge handshake is live and verifiable today; the funded-buyer on-chain settlement proof is in progress. A $1 USDC payment received 2026-09-22 was a manual send, not an x402 settlement.</dd>
+    <dt>Do I need an account or API key?</dt>
+    <dd>No. You need a wallet with USDC on Base and an x402 client. The challenge carries everything else.</dd>
+    <dt>What does each route cost?</dt>
+    <dd>Prices aren't public yet — request founding pricing and you'll get a written offer.</dd>
+    <dt>Why music-industry data?</dt>
+    <dd>Because CWI runs a real label: verified playlist placements, momentum data, rights snapshots and proof-of-use attestations — machine-readable, per call, with evidence attached.</dd>
+    <dt>Who is this for?</dt>
+    <dd>AI-agent builders, agent-commerce experimenters, and Base ecosystem devs who want to be first on a real x402 rail and help shape it.</dd>
+  </dl>
+</section>
+</div>
+
+<footer>
+  <div class="wrap">
+    CWI x402 Agent Deck API · cwi-x402-api-production.up.railway.app · Cumulative Web Inc<br>
+    Draft landing page — local only, not published. Honest-status copy verified 2026-09-22.
+  </div>
+</footer>
+</body>
+</html>
