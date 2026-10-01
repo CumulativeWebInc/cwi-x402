@@ -91,6 +91,24 @@ curl "https://cwi-x402-api-production.up.railway.app/pricing"    # free, machine
   </div>
 </section>
 
+<section id="pricing">
+  <h2>Pricing — the take-rate frame</h2>
+  <p style="color:var(--mut)">The pricing <em>structure</em> is fixed and public. The per-route <em>rates</em> are not — they are staged, awaiting founder approval, and founding integrators get written per-route offers first.</p>
+  <div class="grid">
+    <div class="card"><strong>$0 to start</strong><br>No signup fee, no seat fee, no monthly minimum. Integration costs nothing until your agent makes a paid call.</div>
+    <div class="card"><strong>A cut only on successful paid calls</strong><br>CWI takes its cut only when a paid call settles. Failed calls, 402 handshakes, and free endpoints (<code>/health</code>, <code>/pricing</code>) cost nothing.</div>
+    <div class="card"><strong>Usage-only metering</strong><br>Metered per call, not per seat. No per-seat pricing, no tiers, no subscriptions. Your bill is exactly the calls you made times their rates.</div>
+    <div class="card"><strong>The predictability rule</strong><br>No fee you didn't cause by calling. If your agent didn't call, nothing is charged — ever. Every charge is traceable to a call you made, with a hash-chained receipt.</div>
+  </div>
+  <table>
+    <tr><th>Route</th><th>Rate</th><th>Status</th></tr>
+    <tr><td><code>GET /api/v1/playlist-check?track=</code></td><td>TBD — staged, pending founder approval</td><td><span class="pill live">LIVE</span></td></tr>
+    <tr><td><code>GET /api/v1/momentum-score?track=</code></td><td>TBD — staged, pending founder approval</td><td><span class="pill live">LIVE</span></td></tr>
+    <tr><td colspan="3" style="color:var(--mut)">Remaining routes go live in the order founding integrators need them; each gets a written per-route offer before any public rate card.</td></tr>
+  </table>
+  <p style="color:var(--mut);font-size:.9rem">Honest label: nothing above is a price. Any numbers you see in test environments (e.g. sandbox $0.05 calls) are simulated test figures, never production rates.</p>
+</section>
+
 <section id="founding">
   <h2>Founding-integrator program</h2>
   <div class="grid">
