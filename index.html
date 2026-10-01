@@ -67,7 +67,7 @@ curl "https://cwi-x402-api-production.up.railway.app/pricing"    # free, machine
 
 <section id="routes">
   <h2>Live routes</h2>
-  <p style="color:var(--mut)">Route names are real and live today. Draft routes go live in the order founding integrators need them. Prices are not published — request founding pricing.</p>
+  <p style="color:var(--mut)">Route names are real and live today. Unarmed routes join the payment surface in the order founding integrators need them. Per-route rates are approved and public — see the pricing table below.</p>
   <table>
     <tr><th>Route</th><th>Status</th><th>What it returns</th></tr>
     <tr><td><code>GET /api/v1/playlist-check?track=</code></td><td><span class="pill live">LIVE</span></td><td>Verified playlist placements: playlist, position, date, submission evidence</td></tr>
@@ -93,7 +93,7 @@ curl "https://cwi-x402-api-production.up.railway.app/pricing"    # free, machine
 
 <section id="pricing">
   <h2>Pricing — the take-rate frame</h2>
-  <p style="color:var(--mut)">The pricing <em>structure</em> is fixed and public. The per-route <em>rates</em> are not — they are staged, awaiting founder approval, and founding integrators get written per-route offers first.</p>
+  <p style="color:var(--mut)">The pricing <em>structure</em> is fixed and public. The per-route <em>rates</em> are approved and public — approved 2026-10-01. Founding integrators still get written per-route offers first.</p>
   <div class="grid">
     <div class="card"><strong>$0 to start</strong><br>No signup fee, no seat fee, no monthly minimum. Integration costs nothing until your agent makes a paid call.</div>
     <div class="card"><strong>A cut only on successful paid calls</strong><br>CWI takes its cut only when a paid call settles. Failed calls, 402 handshakes, and free endpoints (<code>/health</code>, <code>/pricing</code>) cost nothing.</div>
@@ -102,17 +102,25 @@ curl "https://cwi-x402-api-production.up.railway.app/pricing"    # free, machine
   </div>
   <table>
     <tr><th>Route</th><th>Rate</th><th>Status</th></tr>
-    <tr><td><code>GET /api/v1/playlist-check?track=</code></td><td>TBD — staged, pending founder approval</td><td><span class="pill live">LIVE</span></td></tr>
-    <tr><td><code>GET /api/v1/momentum-score?track=</code></td><td>TBD — staged, pending founder approval</td><td><span class="pill live">LIVE</span></td></tr>
-    <tr><td colspan="3" style="color:var(--mut)">Remaining routes go live in the order founding integrators need them; each gets a written per-route offer before any public rate card.</td></tr>
+    <tr><td><code>GET /api/v1/playlist-check?track=</code></td><td>$0.05 USDC</td><td><span class="pill live">LIVE</span></td></tr>
+    <tr><td><code>GET /api/v1/momentum-score?track=</code></td><td>$0.05 USDC</td><td><span class="pill live">LIVE</span></td></tr>
+    <tr><td><code>GET /api/v1/tally-wins</code></td><td>$0.05 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td><code>GET /api/v1/ledger-attest?seq=</code></td><td>$0.10 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td><code>GET /api/v1/spin-attest</code></td><td>$0.10 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td><code>GET /api/v1/press-facts</code></td><td>$0.10 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td><code>POST /api/v1/copy-lint</code></td><td>$0.15 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td><code>GET /api/v1/rights-summary</code></td><td>$0.25 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td><code>GET /api/v1/clearance-check</code></td><td>$0.25 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td><code>GET /api/v1/prospect-score</code></td><td>$0.25 USDC</td><td><span class="pill draft">APPROVED</span></td></tr>
+    <tr><td colspan="3" style="color:var(--mut)">Approved rates join the payment surface in the order founding integrators need them; each gets a written per-route offer before arming.</td></tr>
   </table>
-  <p style="color:var(--mut);font-size:.9rem">Honest label: nothing above is a price. Any numbers you see in test environments (e.g. sandbox $0.05 calls) are simulated test figures, never production rates.</p>
+  <p style="color:var(--mut);font-size:.9rem">Honest label: the rates above are approved production rates (approved 2026-10-01 by KingCode under delegated authority). Any numbers you see in sandbox test environments are simulated test figures, never production charges — no production call has settled yet, and production receipts remain zero.</p>
 </section>
 
 <section id="founding">
   <h2>Founding-integrator program</h2>
   <div class="grid">
-    <div class="card"><strong>Locked early-adopter pricing</strong><br>Written offers, priced per route, before any public pricing exists.</div>
+    <div class="card"><strong>Locked early-adopter pricing</strong><br>Written offers, priced per route — public rates in the table above.</div>
     <div class="card"><strong>You steer the roadmap</strong><br>Draft routes go live in the order you need them.</div>
     <div class="card"><strong>Direct line to the builders</strong><br>Talk to the team that shipped it — no support queue.</div>
     <div class="card"><strong>Public credit</strong><br>Named case studies, only with your explicit permission.</div>
@@ -136,7 +144,7 @@ curl "https://cwi-x402-api-production.up.railway.app/pricing"    # free, machine
     <dt>Do I need an account or API key?</dt>
     <dd>No. You need a wallet with USDC on Base and an x402 client. The challenge carries everything else.</dd>
     <dt>What does each route cost?</dt>
-    <dd>Prices aren't public yet — request founding pricing and you'll get a written offer.</dd>
+    <dd>Per-route rates are public — see the pricing table above (USDC on Base, metered per call). Founding integrators get written per-route offers.</dd>
     <dt>Why music-industry data?</dt>
     <dd>Because CWI runs a real label: verified playlist placements, momentum data, rights snapshots and proof-of-use attestations — machine-readable, per call, with evidence attached.</dd>
     <dt>Who is this for?</dt>
